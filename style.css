@@ -1,0 +1,25 @@
+table td{
+    position:relative;
+}
+
+.copy-btn{
+    cursor:pointer;
+}
+
+td{
+    position:relative;
+}
+
+.btn-sm{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-150%);
+    visibility:hidden;
+    transition:all .3s linear;
+}
+
+.show-btn{
+    visibility:visible;
+}
+
