@@ -61,10 +61,10 @@ const showItems = () => {
             table.innerHTML += `
                 <tbody>
                     <tr>
-                        <td id="${element.website}${index}">${element.website} <i onclick="copyText('${element.website}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm">Copied!</button></td>
-                        <td>${element.username} <i onclick="copyText('${element.username}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm">Copied!</button></td>
-                        <td>${maskPassword(element.password)} <i onclick="copyText('${element.password}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm">Copied!</button></td>
-                        <td><button onclick="deleteItems(this)" class="btn btn-primary">Delete</button></td>
+                        <td id="${element.website}${index}">${element.website} <i onclick="copyText('${element.website}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm" id="tool-tip">Copied!</button></td>
+                        <td>${element.username} <i onclick="copyText('${element.username}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm" id="tool-tip">Copied!</button></td>
+                        <td>${maskPassword(element.password)} <i onclick="copyText('${element.password}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm" id="tool-tip">Copied!</button></td>
+                        <td><button onclick="deleteItems(this)" class="btn btn-primary btn-sm">Delete</button></td>
                     </tr>
                 </tbody>
             `
@@ -73,24 +73,24 @@ const showItems = () => {
 }
 
 // Function to mask password
-const maskPassword=(password)=>{
-    let str="";
-    for(let i=0;i<password.length;i++){
-        str+="*";
+const maskPassword = (password) => {
+    let str = "";
+    for (let i = 0; i < password.length; i++) {
+        str += "*";
     }
     return str;
-} 
+}
 
 // Function to copy text
-const copyText = (text,copyElement) => {
+const copyText = (text, copyElement) => {
     // Copy the text to clipboard
     navigator.clipboard.writeText(text);
     // Show copy alert
-    const tooltip=copyElement.parentElement.lastElementChild;
+    const tooltip = copyElement.parentElement.lastElementChild;
     tooltip.classList.add("show-btn");
-    setTimeout(()=>{
+    setTimeout(() => {
         tooltip.classList.remove("show-btn");
-    },1000)
+    }, 1000)
 }
 
 // Function to delete items
