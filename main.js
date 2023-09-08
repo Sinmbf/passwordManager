@@ -1,11 +1,13 @@
+// Import functions
+
+
 // Select items
 const form = document.getElementById("detailForm");
+const alertStored = document.querySelector(".alert-stored");
 const websiteName = document.getElementById("website-name");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 const submitBtn = document.getElementById("btn-submit");
-const table = document.querySelector(".table");
-
 
 // Function to add to local storage
 const filterAndInsert = (arr) => {
@@ -33,82 +35,11 @@ const filterAndInsert = (arr) => {
         })
     }
     localStorage.setItem("passwords", JSON.stringify(arr));
-    showItems();
 }
 
-// Function to show items
-const showItems = () => {
-    if (localStorage.length < 1) {
-        table.innerHTML = `
-            <div div class = "alert alert-danger fade show" role = "alert" >
-               <strong>No passwords currently stored!</strong> 
-            </div>
-        `
-    } else {
-        table.innerHTML = "";
-        table.innerHTML += `
-            <thead>
-                <tr>
-                    <th scope="col">Website</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">Delete</th>
-                </tr>
-            </thead>
-        `
-        const items = JSON.parse(localStorage.getItem("passwords"));
-        items.forEach((element, index) => {
-            table.innerHTML += `
-                <tbody>
-                    <tr>
-                        <td id="${element.website}${index}">${element.website} <i onclick="copyText('${element.website}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm" id="tool-tip">Copied!</button></td>
-                        <td>${element.username} <i onclick="copyText('${element.username}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm" id="tool-tip">Copied!</button></td>
-                        <td>${maskPassword(element.password)} <i onclick="copyText('${element.password}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm" id="tool-tip">Copied!</button></td>
-                        <td><button onclick="deleteItems(this)" class="btn btn-primary btn-sm">Delete</button></td>
-                    </tr>
-                </tbody>
-            `
-        })
-    }
-}
-
-// Function to mask password
-const maskPassword = (password) => {
-    let str = "";
-    for (let i = 0; i < password.length; i++) {
-        str += "*";
-    }
-    return str;
-}
-
-// Function to copy text
-const copyText = (text, copyElement) => {
-    // Copy the text to clipboard
-    navigator.clipboard.writeText(text);
-    // Show copy alert
-    const tooltip = copyElement.parentElement.lastElementChild;
-    tooltip.classList.add("show-btn");
-    setTimeout(() => {
-        tooltip.classList.remove("show-btn");
-    }, 1000)
-}
-
-// Function to delete items
-const deleteItems = (btn) => {
-    const arr = JSON.parse(localStorage.getItem("passwords"));
-    const Id = btn.parentElement.parentElement.firstElementChild.id;
-    const filterArr = arr.filter((element, index) => {
-        if (`${element.website}${index}` !== Id) {
-            return element;
-        }
-    })
-    localStorage.setItem("passwords", JSON.stringify(filterArr));
-    const storage = JSON.parse(localStorage.getItem("passwords"));
-    if (storage.length < 1) {
-        localStorage.removeItem("passwords");
-    }
-    showItems();
-
+// Function to show alert
+const showAlertStored=()=>{
+    alertStored.classList.add("show-alert");
 }
 
 // Function to reset form
@@ -129,15 +60,12 @@ form.addEventListener("submit", (e) => {
             password: password.value
         })
         localStorage.setItem("passwords", JSON.stringify(arr));
-        showItems();
+        showAlertStored();
         resetForm();
     } else {
         let arr = JSON.parse(localStorage.getItem("passwords"));
         filterAndInsert(arr);
+        showAlertStored();
         resetForm();
     }
-})
-
-window.addEventListener("DOMContentLoaded", () => {
-    showItems();
 })

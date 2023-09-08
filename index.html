@@ -29,7 +29,7 @@
                         <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="./password.html">Your PassWords</a>
                     </li>
                 </ul>
             </div>
@@ -40,7 +40,7 @@
     <div class="container my-5 text-center">
         <!-- Introduction -->
         <h1 class="text-info">Fool's PassWord Manager</h1>
-        <p class="text-dark fs-4">Welcome to Fool's PassWord Manager!<br>
+        <p class="text-dark fs-4"><strong>Welcome to Fool's PassWord Manager!</strong><br>
             Simplify your digital life and fortify your security with Fool's Password Manager. <br>Your one-stop
             solution
             for effortless and secure password management.
@@ -52,6 +52,13 @@
         <!-- Enter details -->
         <h2 class="mb-3">Enter Your Passwords</h2>
         <form id="detailForm" class="container w-75 border border-2 p-3">
+            <!-- Alert -->
+            <div class="alert alert-success alert-dismissible fade show alert-stored" role="alert">
+                <strong>Password Successfully Stored!</strong> <a href="./password.html"
+                    class="alert-link text-danger">Show Your Stored Passwords</a>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <!-- Form Input -->
             <div class="mb-3">
                 <label for="website-name" class="form-label">Website Name</label>
                 <input type="text" class="form-control" id="website-name" aria-describedby="emailHelp" required
@@ -68,15 +75,7 @@
             <button type="submit" class="btn btn-primary w-100" id="btn-submit">Submit</button>
         </form>
 
-        <hr class="border border-danger border-2 opacity-50">
 
-        <!-- Passwords Container -->
-        <div class="container">
-            <h2>Your Passwords</h2>
-            <table class="table">
-
-            </table>
-        </div>
     </div>
 
     <!-- Footer -->
