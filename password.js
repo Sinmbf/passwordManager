@@ -15,7 +15,7 @@ const showItems = () => {
     } else {
         table.innerHTML = "";
         table.innerHTML += `
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">Website</th>
                     <th scope="col">Username</th>
@@ -27,7 +27,7 @@ const showItems = () => {
         const items = JSON.parse(localStorage.getItem("passwords"));
         items.forEach((element, index) => {
             table.innerHTML += `
-                <tbody>
+                <tbody class="table-light">
                     <tr>
                         <td id="${element.website}${index}">${element.website} <i onclick="copyText('${element.website}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm" id="tool-tip">Copied!</button></td>
                         <td>${element.username} <i onclick="copyText('${element.username}',this)" class="copy-btn fa-solid fa-copy"></i> <button class="btn btn-secondary btn-sm" id="tool-tip">Copied!</button></td>
